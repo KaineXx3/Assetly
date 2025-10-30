@@ -86,22 +86,6 @@ export default function SettingsScreen() {
         </View>
 
         <View style={styles.section}>
-          {/* Theme Setting */}
-          <TouchableOpacity
-            style={styles.menuItem}
-            onPress={() => setShowThemeModal(true)}
-          >
-            <Ionicons name="color-palette" size={24} color="#6366F1" />
-            <View style={styles.menuTextContainer}>
-              <Text style={styles.menuTitle}>Theme</Text>
-              <Text style={styles.menuSubtitle}>{getThemeLabel(theme)}</Text>
-            </View>
-            <View style={styles.menuRight}>
-              <Text style={styles.menuValue}>{getThemeLabel(theme)}</Text>
-              <Ionicons name="chevron-forward" size={20} color="#CCCCCC" />
-            </View>
-          </TouchableOpacity>
-
           {/* Currency Setting */}
           <TouchableOpacity
             style={styles.menuItem}
@@ -141,65 +125,6 @@ export default function SettingsScreen() {
         </View>
       </ScrollView>
 
-      {/* Theme Selection Modal */}
-      <Modal
-        visible={showThemeModal}
-        transparent
-        animationType="fade"
-        onRequestClose={() => setShowThemeModal(false)}
-      >
-        <View style={styles.modalOverlay}>
-          <View style={styles.modalContent}>
-            <View style={styles.modalHeader}>
-              <Text style={styles.modalTitle}>Select Theme</Text>
-              <TouchableOpacity onPress={() => setShowThemeModal(false)}>
-                <Ionicons name="close" size={24} color="#333333" />
-              </TouchableOpacity>
-            </View>
-
-            {(['light', 'dark', 'auto'] as Theme[]).map((themeOption) => (
-              <TouchableOpacity
-                key={themeOption}
-                style={styles.optionItem}
-                onPress={() => handleThemeChange(themeOption)}
-              >
-                <View style={styles.optionContent}>
-                  <Ionicons
-                    name={
-                      themeOption === 'light'
-                        ? 'sunny'
-                        : themeOption === 'dark'
-                          ? 'moon'
-                          : 'settings'
-                    }
-                    size={24}
-                    color="#6366F1"
-                  />
-                  <View style={styles.optionTextContainer}>
-                    <Text style={styles.optionTitle}>
-                      {getThemeLabel(themeOption)}
-                    </Text>
-                    <Text style={styles.optionSubtitle}>
-                      {themeOption === 'light'
-                        ? 'Always use light mode'
-                        : themeOption === 'dark'
-                          ? 'Always use dark mode'
-                          : 'Follow system settings'}
-                    </Text>
-                  </View>
-                </View>
-                {theme === themeOption && (
-                  <Ionicons
-                    name="checkmark-circle"
-                    size={24}
-                    color="#6366F1"
-                  />
-                )}
-              </TouchableOpacity>
-            ))}
-          </View>
-        </View>
-      </Modal>
 
       {/* Currency Selection Modal */}
       <Modal
