@@ -229,7 +229,7 @@ const styles = StyleSheet.create({
   navButton: {
     fontSize: 24,
     fontWeight: '600',
-    color: '#1976D2',
+    color: '#6366F1',
     paddingHorizontal: 12,
   },
   monthYear: {
@@ -263,7 +263,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
   dayButtonSelected: {
-    backgroundColor: '#1976D2',
+    backgroundColor: '#6366F1',
   },
   dayText: {
     fontSize: 13,

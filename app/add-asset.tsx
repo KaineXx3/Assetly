@@ -164,7 +164,7 @@ export default function AddAssetModal({
                     <Ionicons
                       name={getIconById(selectedIcon)?.iconName as any || 'cube'}
                       size={48}
-                      color="#1976D2"
+                      color="#6366F1"
                     />
                     <Text style={styles.iconSelectText}>
                       {getIconById(selectedIcon)?.name || 'Select Icon'}
@@ -330,7 +330,7 @@ const styles = StyleSheet.create({
   },
   cancelButton: {
     fontSize: 14,
-    color: '#1976D2',
+    color: '#6366F1',
     fontWeight: '500',
   },
   headerTitle: {
@@ -365,7 +365,7 @@ const styles = StyleSheet.create({
   iconSelectButtonSelected: {
     backgroundColor: 'transparent',
     borderWidth: 2,
-    borderColor: '#1976D2',
+    borderColor: '#6366F1',
     borderStyle: 'solid',
   },
   iconSelectText: {
@@ -388,8 +388,8 @@ const styles = StyleSheet.create({
     borderColor: '#E0E0E0',
   },
   categoryButtonActive: {
-    backgroundColor: '#1976D2',
-    borderColor: '#1976D2',
+    backgroundColor: '#6366F1',
+    borderColor: '#6366F1',
   },
   categoryButtonText: {
     fontSize: 12,

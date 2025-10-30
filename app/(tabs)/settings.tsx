@@ -78,7 +78,7 @@ export default function SettingsScreen() {
             style={styles.menuItem}
             onPress={() => setShowThemeModal(true)}
           >
-            <Ionicons name="color-palette" size={24} color="#1976D2" />
+            <Ionicons name="color-palette" size={24} color="#6366F1" />
             <View style={styles.menuTextContainer}>
               <Text style={styles.menuTitle}>Theme</Text>
               <Text style={styles.menuSubtitle}>{getThemeLabel(theme)}</Text>
@@ -94,7 +94,7 @@ export default function SettingsScreen() {
             style={styles.menuItem}
             onPress={() => setShowCurrencyModal(true)}
           >
-            <Ionicons name="cash" size={24} color="#1976D2" />
+            <Ionicons name="cash" size={24} color="#6366F1" />
             <View style={styles.menuTextContainer}>
               <Text style={styles.menuTitle}>Currency</Text>
               <Text style={styles.menuSubtitle}>
@@ -115,7 +115,7 @@ export default function SettingsScreen() {
 
         <View style={styles.section}>
           <View style={styles.menuItem}>
-            <Ionicons name="information-circle" size={24} color="#1976D2" />
+            <Ionicons name="information-circle" size={24} color="#6366F1" />
             <View style={styles.menuTextContainer}>
               <Text style={styles.menuTitle}>About MyAssetly</Text>
               <Text style={styles.menuSubtitle}>Version 1.0.0</Text>
@@ -160,7 +160,7 @@ export default function SettingsScreen() {
                           : 'settings'
                     }
                     size={24}
-                    color="#1976D2"
+                    color="#6366F1"
                   />
                   <View style={styles.optionTextContainer}>
                     <Text style={styles.optionTitle}>
@@ -179,7 +179,7 @@ export default function SettingsScreen() {
                   <Ionicons
                     name="checkmark-circle"
                     size={24}
-                    color="#1976D2"
+                    color="#6366F1"
                   />
                 )}
               </TouchableOpacity>
@@ -226,7 +226,7 @@ export default function SettingsScreen() {
                     <Ionicons
                       name="checkmark-circle"
                       size={24}
-                      color="#1976D2"
+                      color="#6366F1"
                     />
                   )}
                 </TouchableOpacity>

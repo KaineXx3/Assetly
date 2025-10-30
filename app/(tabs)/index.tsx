@@ -348,7 +348,7 @@ export default function AssetsScreen() {
             <RefreshControl
               refreshing={refreshing}
               onRefresh={handleRefresh}
-              tintColor="#1976D2"
+              tintColor="#6366F1"
             />
           }
           scrollEnabled={true}
@@ -424,7 +424,7 @@ const styles = StyleSheet.create({
   badgeText: {
     fontSize: 12,
     fontWeight: '600',
-    color: '#0D47A1',
+    color: '#6366F1',
   },
   headerControls: {
     flexDirection: 'row',

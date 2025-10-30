@@ -27,7 +27,7 @@ export default function TabLayout() {
     <>
       <Tabs
         screenOptions={{
-          tabBarActiveTintColor: '#1976D2',
+          tabBarActiveTintColor: '#6366F1',
           tabBarInactiveTintColor: '#999999',
           headerShown: false,
           tabBarButton: HapticTab,
@@ -73,7 +73,7 @@ export default function TabLayout() {
                     width: 56,
                     height: 56,
                     borderRadius: 28,
-                    backgroundColor: '#1976D2',
+                    backgroundColor: '#6366F1',
                     justifyContent: 'center',
                     alignItems: 'center',
                     shadowColor: '#000000',

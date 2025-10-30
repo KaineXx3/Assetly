@@ -59,7 +59,7 @@ export const IconPicker: React.FC<IconPickerProps> = ({
       <Ionicons
         name={item.iconName as any}
         size={32}
-        color={tempSelected === item.id ? '#FFFFFF' : '#1976D2'}
+        color={tempSelected === item.id ? '#FFFFFF' : '#6366F1'}
       />
       <Text
         style={[
@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
   },
   headerButton: {
     fontSize: 14,
-    color: '#1976D2',
+    color: '#6366F1',
     fontWeight: '500',
   },
   headerTitle: {
@@ -182,7 +182,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5F5F5',
   },
   categoryTabActive: {
-    backgroundColor: '#1976D2',
+    backgroundColor: '#6366F1',
   },
   categoryTabText: {
     fontSize: 12,
@@ -208,8 +208,8 @@ const styles = StyleSheet.create({
     borderColor: '#E0E0E0',
   },
   iconItemSelected: {
-    backgroundColor: '#1976D2',
-    borderColor: '#1976D2',
+    backgroundColor: '#6366F1',
+    borderColor: '#6366F1',
   },
   iconName: {
     fontSize: 9,

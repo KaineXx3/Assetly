@@ -63,7 +63,7 @@ export const AssetsList: React.FC<AssetsListProps> = ({ onAddPress, onAssetPress
   if (loading) {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#1976D2" />
+        <ActivityIndicator size="large" color="#6366F1" />
       </View>
     );
   }
@@ -165,7 +165,7 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
   },
   header: {
-    backgroundColor: '#1976D2',
+    backgroundColor: '#6366F1',
     paddingHorizontal: 16,
     paddingVertical: 16,
     borderBottomLeftRadius: 16,

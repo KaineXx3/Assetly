@@ -119,10 +119,10 @@ export const AddAssetForm: React.FC<AddAssetFormProps> = ({ onClose, onAssetAdde
             <Ionicons
               name={selectedIcon.iconName as any}
               size={48}
-              color="#1976D2"
+              color="#6366F1"
             />
           ) : (
-            <Ionicons name="cube" size={48} color="#1976D2" />
+            <Ionicons name="cube" size={48} color="#6366F1" />
           )}
           <Text style={styles.iconSelectorText}>Select Icon</Text>
         </TouchableOpacity>
@@ -275,7 +275,7 @@ const styles = StyleSheet.create({
   closeButton: {
     fontSize: 14,
     fontWeight: '500',
-    color: '#1976D2',
+    color: '#6366F1',
   },
   headerTitle: {
     fontSize: 18,

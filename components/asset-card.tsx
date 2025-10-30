@@ -80,7 +80,7 @@ export const AssetCard: React.FC<AssetCardProps> = ({
         {iconConfig ? (
           getIconComponent(iconConfig.iconSet, iconConfig.iconName)
         ) : (
-          <Ionicons name="cube" size={40} color="#1976D2" style={styles.icon} />
+          <Ionicons name="cube" size={40} color="#6366F1" style={styles.icon} />
         )}
       </View>
 

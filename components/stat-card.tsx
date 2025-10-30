@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   value: {
     fontSize: 18,
     fontWeight: '700',
-    color: '#1976D2',
+    color: '#6366F1',
     marginBottom: 2,
   },
   subtitle: {
