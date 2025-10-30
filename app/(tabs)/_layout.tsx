@@ -63,27 +63,28 @@ export default function TabLayout() {
                 onPress={() => setShowAddModal(true)}
                 style={{
                   flex: 1,
-                  justifyContent: 'center',
+                  justifyContent: 'flex-end',
                   alignItems: 'center',
+                  paddingBottom: 12,
                 }}
                 activeOpacity={0.7}
               >
                 <View
                   style={{
-                    width: 56,
-                    height: 56,
-                    borderRadius: 28,
+                    width: 60,
+                    height: 60,
+                    borderRadius: 30,
                     backgroundColor: '#6366F1',
                     justifyContent: 'center',
                     alignItems: 'center',
-                    shadowColor: '#000000',
-                    shadowOffset: { width: 0, height: 2 },
-                    shadowOpacity: 0.25,
-                    shadowRadius: 4,
-                    elevation: 5,
+                    shadowColor: '#6366F1',
+                    shadowOffset: { width: 0, height: 4 },
+                    shadowOpacity: 0.35,
+                    shadowRadius: 6,
+                    elevation: 8,
                   }}
                 >
-                  <Ionicons name="add" size={28} color="#FFFFFF" />
+                  <Ionicons name="add" size={32} color="#FFFFFF" />
                 </View>
               </TouchableOpacity>
             ),
