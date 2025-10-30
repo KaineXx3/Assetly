@@ -18,6 +18,7 @@ import { Button } from '../components/ui/button';
 import { DatePicker } from '../components/date-picker';
 import { IconPicker } from '../components/icon-picker';
 import { ICON_CATEGORIES, getAllIcons, getIconById } from '../constants/icons';
+import { useThemeColors } from '../hooks/use-theme-colors';
 
 interface AddAssetModalProps {
   visible: boolean;
@@ -30,6 +31,7 @@ export default function AddAssetModal({
   onClose,
   onSuccess,
 }: AddAssetModalProps) {
+  const colors = useThemeColors();
   const [showIconPicker, setShowIconPicker] = useState(false);
   const [selectedIcon, setSelectedIcon] = useState<string | null>(null);
   const [assetName, setAssetName] = useState('');
@@ -119,11 +121,11 @@ export default function AddAssetModal({
     setShowIconPicker(false);
   };
 
-  const getIconSelectButtonStyle = () => {
+  const getIconSelectButtonStyle = (dynamicStyles: ReturnType<typeof createDynamicStyles>) => {
     if (!selectedIcon) {
-      return styles.iconSelectButton;
+      return dynamicStyles.iconSelectButton;
     }
-    return [styles.iconSelectButton, styles.iconSelectButtonSelected];
+    return [dynamicStyles.iconSelectButton, dynamicStyles.iconSelectButtonSelected];
   };
 
   const handleModalClose = () => {
@@ -131,6 +133,9 @@ export default function AddAssetModal({
     resetForm();
     onClose();
   };
+
+  // Create dynamic styles based on theme colors
+  const dynamicStyles = createDynamicStyles(colors);
 
   return (
     <>
@@ -140,23 +145,23 @@ export default function AddAssetModal({
         transparent={true}
         onRequestClose={handleModalClose}
       >
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={dynamicStyles.container}>
           {/* Header */}
-          <View style={styles.header}>
+          <View style={dynamicStyles.header}>
             <TouchableOpacity onPress={handleModalClose}>
-              <Text style={styles.cancelButton}>Cancel</Text>
+              <Text style={dynamicStyles.cancelButton}>Cancel</Text>
             </TouchableOpacity>
-            <Text style={styles.headerTitle}>Add New Asset</Text>
+            <Text style={dynamicStyles.headerTitle}>Add New Asset</Text>
             <View style={{ width: 60 }} />
           </View>
 
           {/* Content */}
-          <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
+          <ScrollView style={dynamicStyles.content} showsVerticalScrollIndicator={false}>
             {/* Select Icon */}
-            <View style={styles.section}>
-              <Text style={styles.sectionTitle}>Icon</Text>
+            <View style={dynamicStyles.section}>
+              <Text style={dynamicStyles.sectionTitle}>Icon</Text>
               <TouchableOpacity
-                style={getIconSelectButtonStyle()}
+                style={getIconSelectButtonStyle(dynamicStyles)}
                 onPress={() => setShowIconPicker(true)}
               >
                 {selectedIcon ? (
@@ -164,38 +169,38 @@ export default function AddAssetModal({
                     <Ionicons
                       name={getIconById(selectedIcon)?.iconName as any || 'cube'}
                       size={48}
-                      color="#6366F1"
+                      color={colors.primary}
                     />
-                    <Text style={styles.iconSelectText}>
+                    <Text style={dynamicStyles.iconSelectText}>
                       {getIconById(selectedIcon)?.name || 'Select Icon'}
                     </Text>
                   </>
                 ) : (
                   <>
                     <Ionicons name="cube" size={48} color="#CCCCCC" />
-                    <Text style={styles.iconSelectText}>Select Icon</Text>
+                    <Text style={dynamicStyles.iconSelectText}>Select Icon</Text>
                   </>
                 )}
               </TouchableOpacity>
             </View>
 
             {/* Category */}
-            <View style={styles.section}>
-              <Text style={styles.sectionTitle}>Category</Text>
-              <View style={styles.categorySelector}>
+            <View style={dynamicStyles.section}>
+              <Text style={dynamicStyles.sectionTitle}>Category</Text>
+              <View style={dynamicStyles.categorySelector}>
                 {['Uncategorized', 'Digital', 'Clothing', 'Other'].map((cat) => (
                   <TouchableOpacity
                     key={cat}
                     style={[
-                      styles.categoryButton,
-                      category === cat && styles.categoryButtonActive,
+                      dynamicStyles.categoryButton,
+                      category === cat && dynamicStyles.categoryButtonActive,
                     ]}
                     onPress={() => setCategory(cat)}
                   >
                     <Text
                       style={[
-                        styles.categoryButtonText,
-                        category === cat && styles.categoryButtonTextActive,
+                        dynamicStyles.categoryButtonText,
+                        category === cat && dynamicStyles.categoryButtonTextActive,
                       ]}
                     >
                       {cat}
@@ -206,7 +211,7 @@ export default function AddAssetModal({
             </View>
 
             {/* Asset Name */}
-            <View style={styles.section}>
+            <View style={dynamicStyles.section}>
               <Input
                 label="Asset Name"
                 placeholder="e.g., iPad 9, Poco x3gt"
@@ -216,7 +221,7 @@ export default function AddAssetModal({
             </View>
 
             {/* Description */}
-            <View style={styles.section}>
+            <View style={dynamicStyles.section}>
               <Input
                 label="Description"
                 placeholder="e.g., 64GB, Space Gray"
@@ -227,7 +232,7 @@ export default function AddAssetModal({
             </View>
 
             {/* Price */}
-            <View style={styles.section}>
+            <View style={dynamicStyles.section}>
               <Input
                 label="Price"
                 placeholder="e.g., 1050"
@@ -238,7 +243,7 @@ export default function AddAssetModal({
             </View>
 
             {/* Purchase Date */}
-            <View style={styles.section}>
+            <View style={dynamicStyles.section}>
               <DatePicker
                 label="Purchase Date"
                 value={purchaseDate}
@@ -248,7 +253,7 @@ export default function AddAssetModal({
             </View>
 
             {/* Toggle Options */}
-            <View style={styles.section}>
+            <View style={dynamicStyles.section}>
               {/* Warranty Date */}
               <Toggle
                 label="Set Warranty Date"
@@ -288,17 +293,17 @@ export default function AddAssetModal({
             </View>
 
             {/* Add Button */}
-            <View style={styles.section}>
+            <View style={dynamicStyles.section}>
               <Button
                 title={loading ? 'Adding...' : 'Add Asset'}
                 onPress={handleAddAsset}
                 disabled={loading}
                 size="large"
-                style={styles.addButton}
+                style={dynamicStyles.addButton}
               />
             </View>
 
-            <View style={styles.spacer} />
+            <View style={dynamicStyles.spacer} />
           </ScrollView>
         </SafeAreaView>
       </Modal>
@@ -413,3 +418,105 @@ const styles = StyleSheet.create({
     height: 32,
   },
 });
+
+function createDynamicStyles(colors: ReturnType<typeof useThemeColors>) {
+  return {
+    container: {
+      flex: 1,
+      backgroundColor: colors.cardBackground,
+    },
+    header: {
+      flexDirection: 'row' as const,
+      justifyContent: 'space-between' as const,
+      alignItems: 'center' as const,
+      paddingHorizontal: 16,
+      paddingVertical: 12,
+      borderBottomWidth: 1,
+      borderBottomColor: colors.cardBorder,
+    },
+    cancelButton: {
+      fontSize: 14,
+      color: colors.primary,
+      fontWeight: '500' as const,
+    },
+    headerTitle: {
+      fontSize: 16,
+      fontWeight: '600' as const,
+      color: colors.text,
+    },
+    content: {
+      flex: 1,
+      backgroundColor: colors.cardBackground,
+      paddingHorizontal: 16,
+    },
+    section: {
+      marginVertical: 10,
+    },
+    sectionTitle: {
+      fontSize: 14,
+      fontWeight: '600' as const,
+      color: colors.text,
+      marginBottom: 8,
+    },
+    iconSelectButton: {
+      alignItems: 'center' as const,
+      justifyContent: 'center' as const,
+      paddingVertical: 24,
+      backgroundColor: colors.inputBackground,
+      borderRadius: 8,
+      borderWidth: 2,
+      borderColor: colors.cardBorder,
+      borderStyle: 'dashed' as const,
+    },
+    iconSelectButtonSelected: {
+      backgroundColor: 'transparent',
+      borderWidth: 2,
+      borderColor: colors.primary,
+      borderStyle: 'solid' as const,
+    },
+    iconSelectText: {
+      color: colors.textSecondary,
+      fontSize: 14,
+      fontWeight: '500' as const,
+      marginTop: 8,
+    },
+    categorySelector: {
+      flexDirection: 'row' as const,
+      gap: 8,
+      flexWrap: 'wrap' as const,
+    },
+    categoryButton: {
+      paddingHorizontal: 12,
+      paddingVertical: 8,
+      borderRadius: 6,
+      backgroundColor: colors.inputBackground,
+      borderWidth: 1,
+      borderColor: colors.cardBorder,
+      shadowColor: '#000000',
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.12,
+      shadowRadius: 3,
+      elevation: 2,
+    },
+    categoryButtonActive: {
+      backgroundColor: colors.primary,
+      borderColor: colors.primary,
+      shadowColor: '#000000',
+      shadowOpacity: 0.2,
+    },
+    categoryButtonText: {
+      fontSize: 12,
+      fontWeight: '500' as const,
+      color: colors.textSecondary,
+    },
+    categoryButtonTextActive: {
+      color: '#FFFFFF',
+    },
+    addButton: {
+      marginVertical: 8,
+    },
+    spacer: {
+      height: 32,
+    },
+  };
+}

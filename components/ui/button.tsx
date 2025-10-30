@@ -1,5 +1,6 @@
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet, ViewStyle, TextStyle } from 'react-native';
+import { useThemeColors } from '../../hooks/use-theme-colors';
 
 interface ButtonProps {
   onPress: () => void;
@@ -20,7 +21,8 @@ export const Button: React.FC<ButtonProps> = ({
   style,
   textStyle,
 }) => {
-  const variantStyles = getVariantStyles(variant, disabled);
+  const colors = useThemeColors();
+  const variantStyles = getVariantStyles(variant, disabled, colors);
   const sizeStyles = getSizeStyles(size);
 
   return (
@@ -37,12 +39,12 @@ export const Button: React.FC<ButtonProps> = ({
   );
 };
 
-function getVariantStyles(variant: string, disabled: boolean) {
+function getVariantStyles(variant: string, disabled: boolean, colors: any) {
   switch (variant) {
     case 'primary':
       return {
         container: {
-          backgroundColor: disabled ? '#CCCCCC' : '#6366F1',
+          backgroundColor: disabled ? '#CCCCCC' : colors.primary,
         },
         text: {
           color: '#FFFFFF',
@@ -51,12 +53,12 @@ function getVariantStyles(variant: string, disabled: boolean) {
     case 'secondary':
       return {
         container: {
-          backgroundColor: disabled ? '#EEEEEE' : '#F0F9FF',
+          backgroundColor: disabled ? '#EEEEEE' : colors.lightBackground,
           borderWidth: 1,
-          borderColor: '#E0F2FE',
+          borderColor: colors.cardBorder,
         },
         text: {
-          color: disabled ? '#999999' : '#0C4A6E',
+          color: disabled ? '#999999' : colors.darkText,
         },
       };
     case 'danger':
@@ -73,10 +75,10 @@ function getVariantStyles(variant: string, disabled: boolean) {
         container: {
           backgroundColor: 'transparent',
           borderWidth: 2,
-          borderColor: disabled ? '#CCCCCC' : '#6366F1',
+          borderColor: disabled ? '#CCCCCC' : colors.primary,
         },
         text: {
-          color: disabled ? '#CCCCCC' : '#6366F1',
+          color: disabled ? '#CCCCCC' : colors.primary,
         },
       };
     default:
