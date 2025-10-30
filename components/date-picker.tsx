@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { format, addMonths, subMonths, getDaysInMonth, startOfMonth } from 'date-fns';
 import { Button } from './ui/button';
+import { useThemeColors } from '../hooks/use-theme-colors';
 
 interface DatePickerProps {
   label?: string;
@@ -25,6 +26,8 @@ export const DatePicker: React.FC<DatePickerProps> = ({
   maxDate,
   minDate,
 }) => {
+  const colors = useThemeColors();
+  const dynamicStyles = createDynamicStyles(colors);
   const [showPicker, setShowPicker] = useState(false);
   const [tempDate, setTempDate] = useState(new Date(value || new Date()));
   const [currentMonth, setCurrentMonth] = useState(startOfMonth(new Date(value || new Date())));
@@ -306,3 +309,52 @@ const styles = StyleSheet.create({
     borderBottomColor: '#E0E0E0',
   },
 });
+
+function createDynamicStyles(colors: ReturnType<typeof useThemeColors>) {
+  return {
+    container: {
+      marginBottom: 16,
+    },
+    label: {
+      fontSize: 14,
+      fontWeight: '600' as const,
+      marginBottom: 8,
+      color: colors.text,
+    },
+    input: {
+      flex: 1,
+      fontSize: 14,
+      color: colors.text,
+    },
+    button: {
+      borderWidth: 1,
+      borderColor: colors.cardBorder,
+      borderRadius: 6,
+      paddingHorizontal: 12,
+      paddingVertical: 10,
+      backgroundColor: colors.inputBackground,
+    },
+    buttonText: {
+      fontSize: 14,
+      color: colors.primary,
+    },
+    modal: {
+      flex: 1,
+      backgroundColor: 'rgba(0, 0, 0, 0.3)',
+      justifyContent: 'flex-end' as const,
+    },
+    iosDatePickerContainer: {
+      backgroundColor: colors.cardBackground,
+      borderTopLeftRadius: 16,
+      borderTopRightRadius: 16,
+    },
+    iosHeader: {
+      flexDirection: 'row' as const,
+      justifyContent: 'space-between' as const,
+      paddingHorizontal: 16,
+      paddingVertical: 12,
+      borderBottomWidth: 1,
+      borderBottomColor: colors.cardBorder,
+    },
+  };
+}

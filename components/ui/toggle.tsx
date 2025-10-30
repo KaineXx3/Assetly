@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, TouchableOpacity, Text, StyleSheet, ViewStyle } from 'react-native';
+import { useThemeColors } from '../../hooks/use-theme-colors';
 
 interface ToggleProps {
   label?: string;
@@ -14,18 +15,21 @@ export const Toggle: React.FC<ToggleProps> = ({
   onValueChange,
   containerStyle,
 }) => {
+  const colors = useThemeColors();
+  const dynamicStyles = createDynamicStyles(colors);
+
   return (
-    <View style={[styles.container, containerStyle]}>
-      {label && <Text style={styles.label}>{label}</Text>}
+    <View style={[dynamicStyles.container, containerStyle]}>
+      {label && <Text style={dynamicStyles.label}>{label}</Text>}
       <TouchableOpacity
-        style={[styles.toggle, value ? styles.toggleOn : styles.toggleOff]}
+        style={[dynamicStyles.toggle, value ? dynamicStyles.toggleOn : dynamicStyles.toggleOff]}
         onPress={() => onValueChange(!value)}
         activeOpacity={0.7}
       >
         <View
           style={[
-            styles.thumb,
-            value ? styles.thumbOn : styles.thumbOff,
+            dynamicStyles.thumb,
+            value ? dynamicStyles.thumbOn : dynamicStyles.thumbOff,
           ]}
         />
       </TouchableOpacity>
@@ -73,3 +77,46 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
   },
 });
+
+function createDynamicStyles(colors: ReturnType<typeof useThemeColors>) {
+  return {
+    container: {
+      flexDirection: 'row' as const,
+      justifyContent: 'space-between' as const,
+      alignItems: 'center' as const,
+      paddingVertical: 12,
+      paddingHorizontal: 0,
+    },
+    label: {
+      fontSize: 14,
+      fontWeight: '500' as const,
+      color: colors.text,
+      flex: 1,
+    },
+    toggle: {
+      width: 50,
+      height: 28,
+      borderRadius: 14,
+      justifyContent: 'center' as const,
+      paddingHorizontal: 2,
+    },
+    toggleOn: {
+      backgroundColor: '#4CAF50',
+    },
+    toggleOff: {
+      backgroundColor: colors.cardBorder,
+    },
+    thumb: {
+      width: 24,
+      height: 24,
+      borderRadius: 12,
+      backgroundColor: colors.cardBackground,
+    },
+    thumbOn: {
+      alignSelf: 'flex-end' as const,
+    },
+    thumbOff: {
+      alignSelf: 'flex-start' as const,
+    },
+  };
+}
