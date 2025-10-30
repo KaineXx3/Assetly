@@ -242,10 +242,10 @@ export default function SettingsScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F9FAFB',
+    backgroundColor: '#F8FAFC',
   },
   header: {
-    backgroundColor: '#0D47A1',
+    backgroundColor: '#6366F1',
     paddingHorizontal: 16,
     paddingBottom: 20,
     borderBottomLeftRadius: 12,
@@ -305,7 +305,7 @@ const styles = StyleSheet.create({
   menuValue: {
     fontSize: 14,
     fontWeight: '500',
-    color: '#1976D2',
+    color: '#6366F1',
   },
   footer: {
     paddingVertical: 24,
@@ -373,13 +373,13 @@ const styles = StyleSheet.create({
     width: 44,
     height: 44,
     borderRadius: 22,
-    backgroundColor: '#E3F2FD',
+    backgroundColor: '#EDE9FE',
     justifyContent: 'center',
     alignItems: 'center',
   },
   currencySymbol: {
     fontSize: 16,
     fontWeight: '700',
-    color: '#1976D2',
+    color: '#6366F1',
   },
 });

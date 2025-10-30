@@ -243,7 +243,7 @@ export default function AssetDetailModal({
 
         {loading && (
           <View style={styles.loadingContainer}>
-            <ActivityIndicator size="large" color="#1976D2" />
+            <ActivityIndicator size="large" color="#6366F1" />
           </View>
         )}
 
@@ -269,7 +269,7 @@ export default function AssetDetailModal({
                         <Ionicons
                           name={getIconById(editIcon)?.iconName as any || 'cube'}
                           size={48}
-                          color="#1976D2"
+                          color="#6366F1"
                         />
                         <Text style={styles.iconSelectText}>
                           {getIconById(editIcon)?.name || 'Select Icon'}
@@ -401,7 +401,7 @@ export default function AssetDetailModal({
             <View style={[styles.assetCard, { backgroundColor: getCardBackgroundColor() }]}>
               <View style={styles.assetCardHeader}>
                 <View style={styles.assetInfo}>
-                  <Ionicons name={getIconById(asset.icon)?.iconName as any || 'cube'} size={40} color="#1976D2" />
+                  <Ionicons name={getIconById(asset.icon)?.iconName as any || 'cube'} size={40} color="#6366F1" />
                   <View style={styles.assetNameSection}>
                     <Text style={styles.assetName}>{asset.name}</Text>
                     <Text style={styles.assetPrice}>{formatCurrency(asset.price)}</Text>
@@ -470,7 +470,7 @@ export default function AssetDetailModal({
                 onPress={handleEdit}
                 disabled={loading}
               >
-                <Ionicons name="create" size={24} color="#1976D2" />
+                <Ionicons name="create" size={24} color="#6366F1" />
                 <Text style={styles.actionLabel}>Edit</Text>
               </TouchableOpacity>
 
@@ -482,7 +482,7 @@ export default function AssetDetailModal({
                 <Ionicons
                   name={isRetired ? 'close-circle' : 'close-circle-outline'}
                   size={24}
-                  color={isRetired ? '#999999' : '#1976D2'}
+                  color={isRetired ? '#999999' : '#6366F1'}
                 />
                 <Text style={styles.actionLabel}>Retired</Text>
               </TouchableOpacity>
@@ -533,7 +533,7 @@ const styles = StyleSheet.create({
   closeButton: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#1976D2',
+    color: '#6366F1',
   },
   headerTitle: {
     fontSize: 18,
@@ -576,7 +576,7 @@ const styles = StyleSheet.create({
   assetPrice: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#1976D2',
+    color: '#6366F1',
     marginBottom: 2,
   },
   dailyCost: {
@@ -586,7 +586,7 @@ const styles = StyleSheet.create({
   daysLabel: {
     fontSize: 12,
     fontWeight: '600',
-    backgroundColor: '#1976D2',
+    backgroundColor: '#6366F1',
     color: '#FFFFFF',
     paddingHorizontal: 8,
     paddingVertical: 4,
@@ -641,7 +641,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF9E6',
   },
   editButton: {
-    backgroundColor: '#E3F2FD',
+    backgroundColor: '#EDE9FE',
   },
   retiredButton: {
     backgroundColor: '#F5F5F5',
@@ -697,7 +697,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   saveButton: {
-    backgroundColor: '#1976D2',
+    backgroundColor: '#6366F1',
   },
   cancelButton: {
     backgroundColor: '#F5F5F5',
@@ -723,7 +723,7 @@ const styles = StyleSheet.create({
   iconSelectButtonSelected: {
     backgroundColor: 'transparent',
     borderWidth: 2,
-    borderColor: '#1976D2',
+    borderColor: '#6366F1',
     borderStyle: 'solid',
   },
   iconSelectText: {
@@ -746,8 +746,8 @@ const styles = StyleSheet.create({
     borderColor: '#E0E0E0',
   },
   categoryButtonActive: {
-    backgroundColor: '#1976D2',
-    borderColor: '#1976D2',
+    backgroundColor: '#6366F1',
+    borderColor: '#6366F1',
   },
   categoryButtonText: {
     fontSize: 12,

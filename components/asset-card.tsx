@@ -38,21 +38,21 @@ export const AssetCard: React.FC<AssetCardProps> = ({
 
   // Determine card background color based on status
   const getCardBackgroundColor = () => {
-    if (asset.isFavorite) return '#FFD700'; // Yellow for favorite
-    if (!asset.inService) return '#CCCCCC'; // Grey for retired
-    return '#E8F5E9'; // Green default
+    if (asset.isFavorite) return '#FEF3C7'; // Amber for favorite
+    if (!asset.inService) return '#E5E7EB'; // Grey for retired
+    return '#F0F9FF'; // Light blue default
   };
 
   // Determine text color based on background
   const getTextColor = () => {
-    if (asset.isFavorite) return '#333333';
-    if (!asset.inService) return '#555555';
-    return '#1B5E20';
+    if (asset.isFavorite) return '#78350F';
+    if (!asset.inService) return '#4B5563';
+    return '#0C4A6E';
   };
 
   // Map icon set to Ionicons or other vector icon libraries
   const getIconComponent = (setName: string, iconName: string) => {
-    const iconColor = asset.isFavorite ? '#CC8800' : '#1976D2';
+    const iconColor = asset.isFavorite ? '#D97706' : '#6366F1';
     return (
       <Ionicons
         name={iconName as any}
@@ -117,7 +117,7 @@ export const AssetCard: React.FC<AssetCardProps> = ({
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: '#E8F5E9',
+    backgroundColor: '#F0F9FF',
     borderRadius: 16,
     padding: 14,
     marginBottom: 12,
@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 8,
     right: 8,
-    backgroundColor: '#1976D2',
+    backgroundColor: '#6366F1',
     paddingHorizontal: 8,
     paddingVertical: 4,
     borderRadius: 6,
@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
   name: {
     fontSize: 15,
     fontWeight: '700',
-    color: '#1B5E20',
+    color: '#0C4A6E',
     marginBottom: 8,
     textAlign: 'center',
     height: 'auto',
@@ -161,13 +161,13 @@ const styles = StyleSheet.create({
   },
   price: {
     fontSize: 14,
-    color: '#2E7D32',
+    color: '#0D7377',
     fontWeight: '600',
     marginBottom: 6,
   },
   dailyCost: {
     fontSize: 12,
-    color: '#558B2F',
+    color: '#14B8A6',
     fontWeight: '500',
   },
   retiredBadge: {
@@ -188,7 +188,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 8,
     left: 8,
-    backgroundColor: 'rgba(255, 215, 0, 0.3)',
+    backgroundColor: 'rgba(217, 119, 6, 0.15)',
     paddingHorizontal: 6,
     paddingVertical: 2,
     borderRadius: 3,

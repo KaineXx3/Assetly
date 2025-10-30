@@ -42,7 +42,7 @@ function getVariantStyles(variant: string, disabled: boolean) {
     case 'primary':
       return {
         container: {
-          backgroundColor: disabled ? '#CCCCCC' : '#1976D2',
+          backgroundColor: disabled ? '#CCCCCC' : '#6366F1',
         },
         text: {
           color: '#FFFFFF',
@@ -51,18 +51,18 @@ function getVariantStyles(variant: string, disabled: boolean) {
     case 'secondary':
       return {
         container: {
-          backgroundColor: disabled ? '#EEEEEE' : '#F5F5F5',
+          backgroundColor: disabled ? '#EEEEEE' : '#F0F9FF',
           borderWidth: 1,
-          borderColor: '#D0D0D0',
+          borderColor: '#E0F2FE',
         },
         text: {
-          color: disabled ? '#999999' : '#333333',
+          color: disabled ? '#999999' : '#0C4A6E',
         },
       };
     case 'danger':
       return {
         container: {
-          backgroundColor: disabled ? '#CCCCCC' : '#D32F2F',
+          backgroundColor: disabled ? '#CCCCCC' : '#DC2626',
         },
         text: {
           color: '#FFFFFF',
@@ -73,10 +73,10 @@ function getVariantStyles(variant: string, disabled: boolean) {
         container: {
           backgroundColor: 'transparent',
           borderWidth: 2,
-          borderColor: disabled ? '#CCCCCC' : '#1976D2',
+          borderColor: disabled ? '#CCCCCC' : '#6366F1',
         },
         text: {
-          color: disabled ? '#CCCCCC' : '#1976D2',
+          color: disabled ? '#CCCCCC' : '#6366F1',
         },
       };
     default:

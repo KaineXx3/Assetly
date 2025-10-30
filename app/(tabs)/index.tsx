@@ -192,7 +192,7 @@ export default function AssetsScreen() {
     return (
       <SafeAreaView style={styles.container}>
         <View style={styles.loadingContainer}>
-          <ActivityIndicator size="large" color="#1976D2" />
+          <ActivityIndicator size="large" color="#6366F1" />
         </View>
       </SafeAreaView>
     );
@@ -258,7 +258,7 @@ export default function AssetsScreen() {
                       style={[styles.filterMenuItem, filterStatus === 'all' && styles.filterMenuItemActive]}
                       onPress={() => handleFilterChange('all')}
                     >
-                      <Ionicons name="layers" size={14} color={filterStatus === 'all' ? '#1976D2' : '#999999'} />
+                      <Ionicons name="layers" size={14} color={filterStatus === 'all' ? '#6366F1' : '#999999'} />
                       <Text style={[styles.filterMenuText, filterStatus === 'all' && styles.filterMenuTextActive]}>
                         All Assets
                       </Text>
@@ -267,7 +267,7 @@ export default function AssetsScreen() {
                       style={[styles.filterMenuItem, filterStatus === 'active' && styles.filterMenuItemActive]}
                       onPress={() => handleFilterChange('active')}
                     >
-                      <Ionicons name="checkmark-circle" size={14} color={filterStatus === 'active' ? '#1976D2' : '#999999'} />
+                      <Ionicons name="checkmark-circle" size={14} color={filterStatus === 'active' ? '#6366F1' : '#999999'} />
                       <Text style={[styles.filterMenuText, filterStatus === 'active' && styles.filterMenuTextActive]}>
                         Active
                       </Text>
@@ -276,7 +276,7 @@ export default function AssetsScreen() {
                       style={[styles.filterMenuItem, filterStatus === 'retired' && styles.filterMenuItemActive]}
                       onPress={() => handleFilterChange('retired')}
                     >
-                      <Ionicons name="archive" size={14} color={filterStatus === 'retired' ? '#1976D2' : '#999999'} />
+                      <Ionicons name="archive" size={14} color={filterStatus === 'retired' ? '#6366F1' : '#999999'} />
                       <Text style={[styles.filterMenuText, filterStatus === 'retired' && styles.filterMenuTextActive]}>
                         Retired
                       </Text>
@@ -398,7 +398,7 @@ const styles = StyleSheet.create({
     paddingBottom: 0,
   },
   headerCard: {
-    backgroundColor: '#1976D2',
+    backgroundColor: '#6366F1',
     paddingHorizontal: 12,
     paddingVertical: 14,
     borderRadius: 12,
@@ -558,7 +558,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   filterMenuTextActive: {
-    color: '#1976D2',
+    color: '#6366F1',
     fontWeight: '600',
   },
   searchInputContainer: {
