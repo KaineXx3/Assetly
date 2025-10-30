@@ -624,13 +624,9 @@ const styles = StyleSheet.create({
   actionsContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    paddingVertical: 16,
+    paddingVertical: 12,
     marginHorizontal: 12,
     marginBottom: 16,
-    backgroundColor: '#FFFFFF',
-    borderRadius: 12,
-    borderWidth: 1,
-    borderColor: '#E5E7EB',
   },
   actionButton: {
     alignItems: 'center',
@@ -704,9 +700,17 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     alignItems: 'center',
     justifyContent: 'center',
+    marginHorizontal: 6,
+    shadowColor: '#000000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
   },
   saveButton: {
     backgroundColor: '#6366F1',
+    shadowColor: '#6366F1',
+    shadowOpacity: 0.3,
   },
   cancelButton: {
     backgroundColor: '#F5F5F5',
