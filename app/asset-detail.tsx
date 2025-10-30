@@ -519,7 +519,7 @@ export default function AssetDetailModal({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F9FAFB',
+    backgroundColor: '#F8FAFC',
   },
   header: {
     flexDirection: 'row',
@@ -528,7 +528,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 16,
     borderBottomWidth: 1,
-    borderBottomColor: '#F0F0F0',
+    borderBottomColor: '#E5E7EB',
   },
   closeButton: {
     fontSize: 16,
@@ -538,7 +538,7 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 18,
     fontWeight: '700',
-    color: '#333333',
+    color: '#1F2937',
   },
   loadingContainer: {
     flex: 1,
@@ -624,34 +624,38 @@ const styles = StyleSheet.create({
   actionsContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    paddingVertical: 20,
-    borderTopWidth: 1,
-    borderTopColor: '#F0F0F0',
+    paddingVertical: 16,
+    marginHorizontal: 12,
+    marginBottom: 16,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: '#E5E7EB',
   },
   actionButton: {
     alignItems: 'center',
-    gap: 8,
+    gap: 6,
     paddingVertical: 12,
     paddingHorizontal: 12,
-    borderRadius: 8,
+    borderRadius: 10,
     flex: 1,
     marginHorizontal: 4,
   },
   favoriteButton: {
-    backgroundColor: '#FFF9E6',
+    backgroundColor: '#FEF3C7',
   },
   editButton: {
     backgroundColor: '#EDE9FE',
   },
   retiredButton: {
-    backgroundColor: '#F5F5F5',
+    backgroundColor: '#F3F4F6',
   },
   deleteButton: {
-    backgroundColor: '#FFEBEE',
+    backgroundColor: '#FEE2E2',
   },
   actionLabel: {
-    fontSize: 12,
-    fontWeight: '600',
+    fontSize: 11,
+    fontWeight: '700',
     color: '#333333',
   },
   editModeTitle: {
