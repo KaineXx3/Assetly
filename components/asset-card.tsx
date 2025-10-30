@@ -5,6 +5,7 @@ import { Asset } from '../types';
 import { getAssetCalculations, formatCurrency, formatDaysOwned } from '../utils/calculations';
 import { getIconById } from '../constants/icons';
 import { settingsStore } from '../store/settingsStore';
+import { useThemeColors } from '../hooks/use-theme-colors';
 
 interface AssetCardProps {
   asset: Asset;
@@ -17,6 +18,7 @@ export const AssetCard: React.FC<AssetCardProps> = ({
   onPress,
   onLongPress,
 }) => {
+  const colors = useThemeColors();
   const [currency, setCurrency] = useState(settingsStore.currency);
   const iconConfig = getIconById(asset.icon);
 
@@ -39,20 +41,20 @@ export const AssetCard: React.FC<AssetCardProps> = ({
   // Determine card background color based on status
   const getCardBackgroundColor = () => {
     if (asset.isFavorite) return '#FEF3C7'; // Amber for favorite
-    if (!asset.inService) return '#E5E7EB'; // Grey for retired
-    return '#F0F9FF'; // Light blue default
+    if (!asset.inService) return colors.inputBackground; // Grey for retired
+    return colors.cardBackground; // Light blue default
   };
 
   // Determine text color based on background
   const getTextColor = () => {
     if (asset.isFavorite) return '#78350F';
-    if (!asset.inService) return '#4B5563';
-    return '#0C4A6E';
+    if (!asset.inService) return colors.textSecondary;
+    return colors.darkText;
   };
 
   // Map icon set to Ionicons or other vector icon libraries
   const getIconComponent = (setName: string, iconName: string) => {
-    const iconColor = asset.isFavorite ? '#D97706' : '#6366F1';
+    const iconColor = asset.isFavorite ? '#D97706' : colors.primary;
     return (
       <Ionicons
         name={iconName as any}
