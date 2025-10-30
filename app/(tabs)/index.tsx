@@ -19,7 +19,6 @@ import { settingsStore } from '../../store/settingsStore';
 import { calculateAssetSummary, formatCurrency } from '../../utils/calculations';
 import { AssetCard } from '../../components/asset-card';
 import { StatCard } from '../../components/stat-card';
-import { initializeSampleData } from '../../utils/sample-data';
 import AssetDetailModal from '../asset-detail';
 import { setAssetRefreshCallback } from './_layout';
 import { useThemeColors } from '../../hooks/use-theme-colors';
@@ -39,6 +38,11 @@ export default function AssetsScreen() {
   const [showDetailModal, setShowDetailModal] = useState(false);
   const [showSearchInput, setShowSearchInput] = useState(false);
   const [currency, setCurrency] = useState(settingsStore.currency);
+
+  // Log when currency state changes
+  useEffect(() => {
+    // Removed debug log
+  }, [currency]);
 
   const loadAssets = useCallback(async () => {
     try {
@@ -117,9 +121,7 @@ export default function AssetsScreen() {
   // Initialize assets on mount
   useEffect(() => {
     setLoading(true);
-    initializeSampleData().then(() => {
-      loadAssets();
-    });
+    loadAssets();
     
     // Register the refresh callback
     setAssetRefreshCallback(() => {
@@ -138,6 +140,11 @@ export default function AssetsScreen() {
       unsubscribe();
     };
   }, []); // Empty array - subscribe only once on mount
+
+  // Get currency symbol that updates when currency changes
+  const currencySymbol = React.useMemo(() => {
+    return settingsStore.getCurrencySymbol(currency as any);
+  }, [currency]);
 
   useFocusEffect(
     useCallback(() => {
@@ -177,6 +184,7 @@ export default function AssetsScreen() {
       <AssetCard
         asset={item}
         onPress={() => handleAssetPress(item.id)}
+        currency={currency}
       />
     </View>
   );
@@ -207,7 +215,7 @@ export default function AssetsScreen() {
           {/* Title and Controls */}
           <View style={styles.headerTitleRow}>
             <View style={styles.titleSection}>
-              <Text style={styles.headerTitle}>My Assets</Text>
+              <Text style={styles.headerTitle} numberOfLines={1}>My Assets</Text>
             </View>
 
             <View style={styles.headerControls}>
@@ -301,11 +309,11 @@ export default function AssetsScreen() {
             <View style={styles.statsContainer}>
               <View style={styles.statItem}>
                 <Text style={styles.statLabel}>Total Assets</Text>
-                <Text style={styles.statValue}>{formatCurrency(summary.totalValue)}</Text>
+                <Text style={styles.statValue}>{formatCurrency(summary.totalValue, currencySymbol)}</Text>
               </View>
               <View style={styles.statItem}>
                 <Text style={styles.statLabel}>Total Daily Cost</Text>
-                <Text style={styles.statValue}>{formatCurrency(summary.totalDailyCost)}</Text>
+                <Text style={styles.statValue}>{formatCurrency(summary.totalDailyCost, currencySymbol)}</Text>
               </View>
             </View>
           )}
@@ -418,6 +426,7 @@ const styles = StyleSheet.create({
     fontSize: 28,
     fontWeight: '700',
     color: '#FFFFFF',
+    flex: 1,
   },
   badge: {
     display: 'none',

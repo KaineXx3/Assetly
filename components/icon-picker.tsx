@@ -8,6 +8,7 @@ import {
   FlatList,
   Modal,
 } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import {
   ICON_CATEGORIES,
@@ -31,6 +32,7 @@ export const IconPicker: React.FC<IconPickerProps> = ({
   onClose,
   selectedIconId,
 }) => {
+  const insets = useSafeAreaInsets();
   const [selectedCategory, setSelectedCategory] = useState<IconCategory>('Basic');
   const [tempSelected, setTempSelected] = useState(selectedIconId);
 
@@ -80,7 +82,7 @@ export const IconPicker: React.FC<IconPickerProps> = ({
       transparent={false}
       onRequestClose={onClose}
     >
-      <View style={styles.container}>
+  <View style={[styles.container, { paddingTop: Math.max(12, insets.top) }]}>
         {/* Header */}
         <View style={styles.header}>
           <TouchableOpacity onPress={onClose}>

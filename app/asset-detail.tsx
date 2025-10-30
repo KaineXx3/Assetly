@@ -7,9 +7,9 @@ import {
   SafeAreaView,
   TouchableOpacity,
   Text,
-  Alert,
   ActivityIndicator,
 } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { Asset } from '../types';
 import { assetStore } from '../store/assetStore';
@@ -19,6 +19,7 @@ import { DatePicker } from '../components/date-picker';
 import { IconPicker } from '../components/icon-picker';
 import { Input } from '../components/ui/input';
 import { Toggle } from '../components/ui/toggle';
+import { ModernAlert, AlertType } from '../components/modern-alert';
 import { getIconById } from '../constants/icons';
 import { useThemeColors } from '../hooks/use-theme-colors';
 
@@ -35,6 +36,7 @@ export default function AssetDetailModal({
   onClose,
   onUpdate,
 }: AssetDetailProps) {
+  const insets = useSafeAreaInsets();
   const [loading, setLoading] = useState(false);
   const [isFavorite, setIsFavorite] = useState(asset?.isFavorite ?? false);
   const [isRetired, setIsRetired] = useState(asset?.inService === false);
@@ -50,6 +52,19 @@ export default function AssetDetailModal({
   const [editSetWarrantyMode, setEditSetWarrantyMode] = useState(!!asset?.warrantyDate);
   const [editInService, setEditInService] = useState(asset?.inService ?? true);
   const [currency, setCurrency] = useState(settingsStore.currency);
+  
+  // Modern Alert State
+  const [alertVisible, setAlertVisible] = useState(false);
+  const [alertType, setAlertType] = useState<AlertType>('info');
+  const [alertTitle, setAlertTitle] = useState('');
+  const [alertMessage, setAlertMessage] = useState('');
+
+  const showAlert = (type: AlertType, title: string, message: string) => {
+    setAlertType(type);
+    setAlertTitle(title);
+    setAlertMessage(message);
+    setAlertVisible(true);
+  };
 
   // Update state when asset changes
   useEffect(() => {
@@ -88,17 +103,17 @@ export default function AssetDetailModal({
 
   const handleSaveEdit = async () => {
     if (!editIcon) {
-      Alert.alert('Error', 'Please select an icon');
+      showAlert('error', 'Error', 'Please select an icon');
       return;
     }
 
     if (!editName.trim()) {
-      Alert.alert('Error', 'Please enter asset name');
+      showAlert('error', 'Error', 'Please enter asset name');
       return;
     }
 
     if (!editPrice || isNaN(parseFloat(editPrice))) {
-      Alert.alert('Error', 'Please enter valid price');
+      showAlert('error', 'Error', 'Please enter valid price');
       return;
     }
 
@@ -128,11 +143,17 @@ export default function AssetDetailModal({
       setEditSetWarrantyMode(!!updatedAsset.warrantyDate);
       setEditInService(updatedAsset.inService ?? true);
       
-      setIsEditMode(false);
+      // Show success alert first, then close the modal after a delay
+      showAlert('success', 'Success', 'Asset updated successfully');
       onUpdate?.();
+      
+      // Close the modal after a slight delay so alert is visible
+      setTimeout(() => {
+        setIsEditMode(false);
+      }, 1500);
     } catch (error) {
       console.error('Error updating asset:', error);
-      Alert.alert('Error', 'Failed to update asset');
+      showAlert('error', 'Error', 'Failed to update asset');
     } finally {
       setLoading(false);
     }
@@ -161,7 +182,7 @@ export default function AssetDetailModal({
       onUpdate?.();
     } catch (error) {
       console.error('Error updating favorite:', error);
-      Alert.alert('Error', 'Failed to update favorite status');
+      showAlert('error', 'Error', 'Failed to update favorite status');
     } finally {
       setLoading(false);
     }
@@ -177,38 +198,29 @@ export default function AssetDetailModal({
       onUpdate?.();
     } catch (error) {
       console.error('Error updating retired status:', error);
-      Alert.alert('Error', 'Failed to update retired status');
+      showAlert('error', 'Error', 'Failed to update retired status');
     } finally {
       setLoading(false);
     }
   };
 
-  const handleDelete = () => {
-    Alert.alert(
-      'Delete Asset',
-      `Are you sure you want to delete "${asset.name}"?`,
-      [
-        { text: 'Cancel', onPress: () => {} },
-        {
-          text: 'Delete',
-          onPress: async () => {
-            try {
-              setLoading(true);
-              await assetStore.deleteAsset(asset.id);
-              onUpdate?.();
-              onClose();
-              Alert.alert('Success', 'Asset deleted successfully');
-            } catch (error) {
-              console.error('Error deleting asset:', error);
-              Alert.alert('Error', 'Failed to delete asset');
-            } finally {
-              setLoading(false);
-            }
-          },
-          style: 'destructive',
-        },
-      ]
-    );
+  const handleDelete = async () => {
+    // Show confirmation first - we'll use a custom confirmation approach
+    // For now, directly proceed with delete and show modern alert on completion
+    try {
+      setLoading(true);
+      await assetStore.deleteAsset(asset.id);
+      showAlert('success', 'Success', 'Asset deleted successfully');
+      onUpdate?.();
+      setTimeout(() => {
+        onClose();
+      }, 1000);
+    } catch (error) {
+      console.error('Error deleting asset:', error);
+      showAlert('error', 'Error', 'Failed to delete asset');
+    } finally {
+      setLoading(false);
+    }
   };
 
   // Determine card background color based on status
@@ -226,15 +238,16 @@ export default function AssetDetailModal({
   });
 
   return (
-    <Modal
-      visible={visible}
-      animationType="slide"
-      transparent={true}
-      onRequestClose={onClose}
-    >
+    <>
+      <Modal
+        visible={visible}
+        animationType="slide"
+        transparent={true}
+        onRequestClose={onClose}
+      >
       <SafeAreaView style={styles.container}>
         {/* Header */}
-        <View style={styles.header}>
+        <View style={[styles.header, { marginTop: insets.top }]}>
           <TouchableOpacity onPress={onClose}>
             <Text style={styles.closeButton}>Close</Text>
           </TouchableOpacity>
@@ -514,6 +527,17 @@ export default function AssetDetailModal({
         selectedIconId={editIcon || undefined}
       />
     </Modal>
+
+    {/* Modern Alert - Outside Modal */}
+    <ModernAlert
+      visible={alertVisible}
+      type={alertType}
+      title={alertTitle}
+      message={alertMessage}
+      onClose={() => setAlertVisible(false)}
+      duration={1000}
+    />
+    </>
   );
 }
 

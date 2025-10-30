@@ -21,6 +21,7 @@ export default function SettingsScreen() {
   const [currency, setCurrency] = useState<Currency>(settingsStore.currency);
   const [showThemeModal, setShowThemeModal] = useState(false);
   const [showCurrencyModal, setShowCurrencyModal] = useState(false);
+  const [showAboutDetails, setShowAboutDetails] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -111,17 +112,51 @@ export default function SettingsScreen() {
         </View>
 
         <View style={styles.section}>
-          <View style={styles.menuItem}>
+          <TouchableOpacity
+            style={styles.menuItem}
+            onPress={() => setShowAboutDetails(!showAboutDetails)}
+          >
             <Ionicons name="information-circle" size={24} color="#6366F1" />
             <View style={styles.menuTextContainer}>
-              <Text style={styles.menuTitle}>About MyAssetly</Text>
+              <Text style={styles.menuTitle}>About Assetly</Text>
               <Text style={styles.menuSubtitle}>Version 1.0.0</Text>
             </View>
-          </View>
+            <View style={styles.menuRight}>
+              <Ionicons
+                name={showAboutDetails ? 'chevron-up' : 'chevron-down'}
+                size={20}
+                color="#CCCCCC"
+              />
+            </View>
+          </TouchableOpacity>
+
+          {showAboutDetails && (
+            <>
+              <View style={styles.divider} />
+
+              <View style={styles.aboutContent}>
+                <Text style={styles.aboutTitle}>Assetly</Text>
+                <Text style={styles.aboutDescription}>
+                  A powerful asset management application designed to help you track, organize, and manage all your valuable possessions.
+                </Text>
+
+                <Text style={styles.aboutSectionTitle}>Features</Text>
+                <Text style={styles.aboutBullet}>• Track all your assets with detailed information</Text>
+                <Text style={styles.aboutBullet}>• Monitor daily depreciation costs</Text>
+                <Text style={styles.aboutBullet}>• Organize assets by categories</Text>
+                <Text style={styles.aboutBullet}>• Support for multiple currencies</Text>
+                <Text style={styles.aboutBullet}>• Mark assets as favorites or retired</Text>
+                <Text style={styles.aboutBullet}>• Calculate asset value based on usage</Text>
+
+                <Text style={styles.versionText}>Version 1.0.0</Text>
+                <Text style={styles.copyrightText}>© 2024 Assetly. All rights reserved.</Text>
+              </View>
+            </>
+          )}
         </View>
 
         <View style={styles.footer}>
-          <Text style={styles.footerText}>MyAssetly v1.0.0</Text>
+          <Text style={styles.footerText}>Assetly v1.0.0</Text>
         </View>
       </ScrollView>
 
@@ -146,6 +181,7 @@ export default function SettingsScreen() {
               data={settingsStore.getAvailableCurrencies()}
               keyExtractor={(item) => item.code}
               scrollEnabled={false}
+              contentContainerStyle={styles.currencyListContainer}
               renderItem={({ item }) => (
                 <TouchableOpacity
                   style={styles.optionItem}
@@ -263,7 +299,7 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 16,
     borderTopRightRadius: 16,
     maxHeight: '80%',
-    paddingBottom: 20,
+    paddingBottom: 32,
   },
   modalHeader: {
     flexDirection: 'row',
@@ -319,5 +355,54 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '700',
     color: '#6366F1',
+  },
+  currencyListContainer: {
+    paddingBottom: 48,
+  },
+  divider: {
+    height: 1,
+    backgroundColor: '#F0F0F0',
+    marginVertical: 12,
+  },
+  aboutContent: {
+    paddingHorizontal: 16,
+    paddingVertical: 16,
+  },
+  aboutTitle: {
+    fontSize: 18,
+    fontWeight: '700',
+    color: '#0C4A6E',
+    marginBottom: 8,
+  },
+  aboutDescription: {
+    fontSize: 14,
+    color: '#666666',
+    lineHeight: 20,
+    marginBottom: 16,
+  },
+  aboutSectionTitle: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#0C4A6E',
+    marginTop: 12,
+    marginBottom: 8,
+  },
+  aboutBullet: {
+    fontSize: 13,
+    color: '#666666',
+    lineHeight: 18,
+    marginBottom: 6,
+  },
+  versionText: {
+    fontSize: 12,
+    color: '#999999',
+    marginTop: 16,
+    textAlign: 'center',
+  },
+  copyrightText: {
+    fontSize: 11,
+    color: '#CCCCCC',
+    marginTop: 4,
+    textAlign: 'center',
   },
 });

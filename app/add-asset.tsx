@@ -7,8 +7,8 @@ import {
   SafeAreaView,
   TouchableOpacity,
   Text,
-  Alert,
 } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { Asset } from '../types';
 import { assetStore } from '../store/assetStore';
@@ -17,6 +17,7 @@ import { Toggle } from '../components/ui/toggle';
 import { Button } from '../components/ui/button';
 import { DatePicker } from '../components/date-picker';
 import { IconPicker } from '../components/icon-picker';
+import { ModernAlert, AlertType } from '../components/modern-alert';
 import { ICON_CATEGORIES, getAllIcons, getIconById } from '../constants/icons';
 import { useThemeColors } from '../hooks/use-theme-colors';
 
@@ -31,6 +32,7 @@ export default function AddAssetModal({
   onClose,
   onSuccess,
 }: AddAssetModalProps) {
+  const insets = useSafeAreaInsets();
   const colors = useThemeColors();
   const [showIconPicker, setShowIconPicker] = useState(false);
   const [selectedIcon, setSelectedIcon] = useState<string | null>(null);
@@ -47,21 +49,33 @@ export default function AddAssetModal({
   const [dailyPrice, setDailyPrice] = useState('');
   const [inService, setInService] = useState(true);
   const [loading, setLoading] = useState(false);
+  // Modern Alert State
+  const [alertVisible, setAlertVisible] = useState(false);
+  const [alertType, setAlertType] = useState<AlertType>('info');
+  const [alertTitle, setAlertTitle] = useState('');
+  const [alertMessage, setAlertMessage] = useState('');
+
+  const showAlert = (type: AlertType, title: string, message: string) => {
+    setAlertType(type);
+    setAlertTitle(title);
+    setAlertMessage(message);
+    setAlertVisible(true);
+  };
 
   const handleAddAsset = async () => {
     // Validation
     if (!selectedIcon) {
-      Alert.alert('Error', 'Please select an icon');
+      showAlert('error', 'Error', 'Please select an icon');
       return;
     }
 
     if (!assetName.trim()) {
-      Alert.alert('Error', 'Please enter asset name');
+      showAlert('error', 'Error', 'Please enter asset name');
       return;
     }
 
     if (!price || isNaN(parseFloat(price))) {
-      Alert.alert('Error', 'Please enter valid price');
+      showAlert('error', 'Error', 'Please enter valid price');
       return;
     }
 
@@ -85,16 +99,15 @@ export default function AddAssetModal({
       };
 
       await assetStore.addAsset(newAsset);
-
       // Reset form
       resetForm();
       onClose();
       onSuccess?.();
 
-      Alert.alert('Success', 'Asset added successfully!');
+      showAlert('success', 'Success', 'Asset added successfully!');
     } catch (error) {
       console.error('Error adding asset:', error);
-      Alert.alert('Error', 'Failed to add asset. Please try again.');
+      showAlert('error', 'Error', 'Failed to add asset. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -139,6 +152,15 @@ export default function AddAssetModal({
 
   return (
     <>
+      <ModernAlert
+        visible={alertVisible}
+        type={alertType}
+        title={alertTitle}
+        message={alertMessage}
+        onClose={() => setAlertVisible(false)}
+        duration={1000}
+      />
+      
       <Modal
         visible={visible}
         animationType="slide"
@@ -147,7 +169,7 @@ export default function AddAssetModal({
       >
         <SafeAreaView style={dynamicStyles.container}>
           {/* Header */}
-          <View style={dynamicStyles.header}>
+          <View style={[dynamicStyles.header, { marginTop: insets.top }]}>
             <TouchableOpacity onPress={handleModalClose}>
               <Text style={dynamicStyles.cancelButton}>Cancel</Text>
             </TouchableOpacity>

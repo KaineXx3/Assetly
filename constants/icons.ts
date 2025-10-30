@@ -44,27 +44,27 @@ export const ICON_DATABASE: IconConfig[] = [
 
   // Clothing
   { id: 'clothing-shirt', name: 'T-Shirt', category: 'Clothing', iconName: 'shirt', iconSet: 'Ionicons' },
-  { id: 'clothing-shoes', name: 'Shoes', category: 'Clothing', iconName: 'shoe', iconSet: 'Ionicons' },
-  { id: 'clothing-jacket', name: 'Jacket', category: 'Clothing', iconName: 'checkroom', iconSet: 'MaterialCommunityIcons' },
-  { id: 'clothing-hat', name: 'Hat', category: 'Clothing', iconName: 'hat-agent', iconSet: 'MaterialCommunityIcons' },
-  { id: 'clothing-pants', name: 'Pants', category: 'Clothing', iconName: 'shape', iconSet: 'Ionicons' },
-  { id: 'clothing-dress', name: 'Dress', category: 'Clothing', iconName: 'woman', iconSet: 'Ionicons' },
-  { id: 'clothing-socks', name: 'Socks', category: 'Clothing', iconName: 'footprints', iconSet: 'MaterialCommunityIcons' },
-  { id: 'clothing-gloves', name: 'Gloves', category: 'Clothing', iconName: 'hand', iconSet: 'Ionicons' },
-  { id: 'clothing-belt', name: 'Belt', category: 'Clothing', iconName: 'ellipsis-horizontal-circle', iconSet: 'Ionicons' },
-  { id: 'clothing-sunglasses', name: 'Sunglasses', category: 'Clothing', iconName: 'sunglasses', iconSet: 'MaterialCommunityIcons' },
+  { id: 'clothing-shoes', name: 'Shoes', category: 'Clothing', iconName: 'footsteps', iconSet: 'Ionicons' },
+  { id: 'clothing-jacket', name: 'Jacket', category: 'Clothing', iconName: 'bag', iconSet: 'Ionicons' },
+  { id: 'clothing-hat', name: 'Hat', category: 'Clothing', iconName: 'aperture', iconSet: 'Ionicons' },
+  { id: 'clothing-pants', name: 'Pants', category: 'Clothing', iconName: 'layers', iconSet: 'Ionicons' },
+  { id: 'clothing-dress', name: 'Dress', category: 'Clothing', iconName: 'person', iconSet: 'Ionicons' },
+  { id: 'clothing-socks', name: 'Socks', category: 'Clothing', iconName: 'flame', iconSet: 'Ionicons' },
+  { id: 'clothing-gloves', name: 'Gloves', category: 'Clothing', iconName: 'thumbs-up', iconSet: 'Ionicons' },
+  { id: 'clothing-belt', name: 'Belt', category: 'Clothing', iconName: 'radio-button-on', iconSet: 'Ionicons' },
+  { id: 'clothing-sunglasses', name: 'Sunglasses', category: 'Clothing', iconName: 'eye', iconSet: 'Ionicons' },
 
   // Beauty
   { id: 'beauty-perfume', name: 'Perfume', category: 'Beauty', iconName: 'flask', iconSet: 'Ionicons' },
   { id: 'beauty-lipstick', name: 'Lipstick', category: 'Beauty', iconName: 'heart', iconSet: 'Ionicons' },
-  { id: 'beauty-brush', name: 'Brush', category: 'Beauty', iconName: 'brush', iconSet: 'MaterialCommunityIcons' },
+  { id: 'beauty-brush', name: 'Brush', category: 'Beauty', iconName: 'brush', iconSet: 'Ionicons' },
   { id: 'beauty-mirror', name: 'Mirror', category: 'Beauty', iconName: 'search', iconSet: 'Ionicons' },
   { id: 'beauty-scissors', name: 'Scissors', category: 'Beauty', iconName: 'cut', iconSet: 'Ionicons' },
   { id: 'beauty-bottle', name: 'Bottle', category: 'Beauty', iconName: 'water', iconSet: 'Ionicons' },
   { id: 'beauty-soap', name: 'Soap', category: 'Beauty', iconName: 'water-outline', iconSet: 'Ionicons' },
   { id: 'beauty-comb', name: 'Comb', category: 'Beauty', iconName: 'list', iconSet: 'Ionicons' },
   { id: 'beauty-nail', name: 'Nail', category: 'Beauty', iconName: 'flower', iconSet: 'Ionicons' },
-  { id: 'beauty-mask', name: 'Mask', category: 'Beauty', iconName: 'face', iconSet: 'Ionicons' },
+  { id: 'beauty-mask', name: 'Mask', category: 'Beauty', iconName: 'eye', iconSet: 'Ionicons' },
 
   // Brand
   { id: 'brand-apple', name: 'Apple', category: 'Brand', iconName: 'logo-apple', iconSet: 'Ionicons' },
@@ -72,10 +72,10 @@ export const ICON_DATABASE: IconConfig[] = [
   { id: 'brand-microsoft', name: 'Microsoft', category: 'Brand', iconName: 'logo-windows', iconSet: 'Ionicons' },
   { id: 'brand-samsung', name: 'Samsung', category: 'Brand', iconName: 'phone-portrait', iconSet: 'Ionicons' },
   { id: 'brand-sony', name: 'Sony', category: 'Brand', iconName: 'headset', iconSet: 'Ionicons' },
-  { id: 'brand-nike', name: 'Nike', category: 'Brand', iconName: 'shoe', iconSet: 'Ionicons' },
+  { id: 'brand-nike', name: 'Nike', category: 'Brand', iconName: 'settings', iconSet: 'Ionicons' },
   { id: 'brand-adidas', name: 'Adidas', category: 'Brand', iconName: 'shirt', iconSet: 'Ionicons' },
-  { id: 'brand-intel', name: 'Intel', category: 'Brand', iconName: 'chip', iconSet: 'MaterialCommunityIcons' },
-  { id: 'brand-nvidia', name: 'NVIDIA', category: 'Brand', iconName: 'gamepad', iconSet: 'Ionicons' },
+  { id: 'brand-intel', name: 'Intel', category: 'Brand', iconName: 'cube', iconSet: 'Ionicons' },
+  { id: 'brand-nvidia', name: 'NVIDIA', category: 'Brand', iconName: 'game-controller', iconSet: 'Ionicons' },
   { id: 'brand-canon', name: 'Canon', category: 'Brand', iconName: 'camera', iconSet: 'Ionicons' },
 
   // Musical
@@ -83,10 +83,10 @@ export const ICON_DATABASE: IconConfig[] = [
   { id: 'musical-piano', name: 'Piano', category: 'Musical', iconName: 'musical-notes', iconSet: 'Ionicons' },
   { id: 'musical-drum', name: 'Drum', category: 'Musical', iconName: 'disc', iconSet: 'Ionicons' },
   { id: 'musical-saxophone', name: 'Saxophone', category: 'Musical', iconName: 'musical-note', iconSet: 'Ionicons' },
-  { id: 'musical-violin', name: 'Violin', category: 'Musical', iconName: 'musical-note', iconSet: 'Ionicons' },
-  { id: 'musical-microphone', name: 'Microphone', category: 'Musical', iconName: 'microphone', iconSet: 'Ionicons' },
+  { id: 'musical-violin', name: 'Violin', category: 'Musical', iconName: 'volume-high', iconSet: 'Ionicons' },
+  { id: 'musical-microphone', name: 'Microphone', category: 'Musical', iconName: 'megaphone', iconSet: 'Ionicons' },
   { id: 'musical-speaker', name: 'Speaker', category: 'Musical', iconName: 'volume-high', iconSet: 'Ionicons' },
-  { id: 'musical-amplifier', name: 'Amplifier', category: 'Musical', iconName: 'radio', iconSet: 'Ionicons' },
+  { id: 'musical-amplifier', name: 'Amplifier', category: 'Musical', iconName: 'volume-low', iconSet: 'Ionicons' },
   { id: 'musical-tuner', name: 'Tuner', category: 'Musical', iconName: 'settings', iconSet: 'Ionicons' },
   { id: 'musical-metronome', name: 'Metronome', category: 'Musical', iconName: 'timer', iconSet: 'Ionicons' },
 
@@ -103,15 +103,15 @@ export const ICON_DATABASE: IconConfig[] = [
   { id: 'transport-helmet', name: 'Helmet', category: 'Transport', iconName: 'shield', iconSet: 'Ionicons' },
 
   // Fitness
-  { id: 'fitness-dumbbell', name: 'Dumbbell', category: 'Fitness', iconName: 'barbell', iconSet: 'MaterialCommunityIcons' },
-  { id: 'fitness-yoga', name: 'Yoga Mat', category: 'Fitness', iconName: 'fitness', iconSet: 'Ionicons' },
+  { id: 'fitness-dumbbell', name: 'Dumbbell', category: 'Fitness', iconName: 'barbell-outline', iconSet: 'Ionicons' },
+  { id: 'fitness-yoga', name: 'Yoga Mat', category: 'Fitness', iconName: 'body', iconSet: 'Ionicons' },
   { id: 'fitness-running', name: 'Running', category: 'Fitness', iconName: 'walk', iconSet: 'Ionicons' },
   { id: 'fitness-bike', name: 'Exercise Bike', category: 'Fitness', iconName: 'bicycle', iconSet: 'Ionicons' },
-  { id: 'fitness-treadmill', name: 'Treadmill', category: 'Fitness', iconName: 'walk', iconSet: 'Ionicons' },
+  { id: 'fitness-treadmill', name: 'Treadmill', category: 'Fitness', iconName: 'flash', iconSet: 'Ionicons' },
   { id: 'fitness-basketball', name: 'Basketball', category: 'Fitness', iconName: 'basketball', iconSet: 'Ionicons' },
   { id: 'fitness-football', name: 'Football', category: 'Fitness', iconName: 'football', iconSet: 'Ionicons' },
-  { id: 'fitness-tennis', name: 'Tennis Racket', category: 'Fitness', iconName: 'tennisball', iconSet: 'MaterialCommunityIcons' },
-  { id: 'fitness-skates', name: 'Skates', category: 'Fitness', iconName: 'skate', iconSet: 'MaterialCommunityIcons' },
+  { id: 'fitness-tennis', name: 'Tennis Racket', category: 'Fitness', iconName: 'game-controller', iconSet: 'Ionicons' },
+  { id: 'fitness-skates', name: 'Skates', category: 'Fitness', iconName: 'accessibility', iconSet: 'Ionicons' },
   { id: 'fitness-stopwatch', name: 'Stopwatch', category: 'Fitness', iconName: 'timer', iconSet: 'Ionicons' },
 ];
 

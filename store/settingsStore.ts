@@ -84,20 +84,31 @@ class SettingsStore {
     }
   }
 
-  getCurrencySymbol(): string {
-    return CURRENCY_SYMBOLS[this.currency];
+  getCurrencySymbol(currencyCode?: Currency): string {
+    const code = currencyCode || this.currency;
+    return CURRENCY_SYMBOLS[code];
   }
 
-  getCurrencyName(): string {
-    return CURRENCY_NAMES[this.currency];
+  getCurrencyName(currencyCode?: Currency): string {
+    const code = currencyCode || this.currency;
+    return CURRENCY_NAMES[code];
   }
 
   getAvailableCurrencies(): Array<{ code: Currency; name: string; symbol: string }> {
-    return Object.keys(CURRENCY_NAMES).map((code) => ({
+    const currencies = Object.keys(CURRENCY_NAMES).map((code) => ({
       code: code as Currency,
       name: CURRENCY_NAMES[code as Currency],
       symbol: CURRENCY_SYMBOLS[code as Currency],
     }));
+    
+    // Move MYR to the front
+    const myrIndex = currencies.findIndex(c => c.code === 'MYR');
+    if (myrIndex > -1) {
+      const myr = currencies.splice(myrIndex, 1)[0];
+      currencies.unshift(myr);
+    }
+    
+    return currencies;
   }
 }
 

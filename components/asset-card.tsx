@@ -1,42 +1,37 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Asset } from '../types';
 import { getAssetCalculations, formatCurrency, formatDaysOwned } from '../utils/calculations';
 import { getIconById } from '../constants/icons';
-import { settingsStore } from '../store/settingsStore';
 import { useThemeColors } from '../hooks/use-theme-colors';
+import { settingsStore } from '../store/settingsStore';
 
 interface AssetCardProps {
   asset: Asset;
   onPress: () => void;
   onLongPress?: () => void;
+  currency?: string; // Add currency as a prop
 }
 
 export const AssetCard: React.FC<AssetCardProps> = ({
   asset,
   onPress,
   onLongPress,
+  currency,
 }) => {
   const colors = useThemeColors();
-  const [currency, setCurrency] = useState(settingsStore.currency);
   const iconConfig = getIconById(asset.icon);
 
-  // Memoize calculations based on currency
+  // Get currency symbol from store (this will be called on every render due to currency prop)
+  const currencySymbol = React.useMemo(() => {
+    return settingsStore.getCurrencySymbol(currency as any);
+  }, [currency]);
+
+  // Memoize calculations based on asset only (currency formatting happens in JSX)
   const calculations = React.useMemo(() => {
     return getAssetCalculations(asset);
-  }, [asset, currency]);
-
-  useEffect(() => {
-    // Subscribe to settings changes
-    const unsubscribe = settingsStore.subscribe(() => {
-      setCurrency(settingsStore.currency);
-    });
-
-    return () => {
-      unsubscribe();
-    };
-  }, []); // Empty array - subscribe only once on mount
+  }, [asset]);
 
   // Determine card background color based on status
   const getCardBackgroundColor = () => {
@@ -93,12 +88,12 @@ export const AssetCard: React.FC<AssetCardProps> = ({
 
       {/* Price */}
       <Text style={[styles.price, { color: getTextColor() }]}>
-        {formatCurrency(asset.price)}
+        {formatCurrency(asset.price, currencySymbol)}
       </Text>
 
       {/* Daily Cost */}
       <Text style={[styles.dailyCost, { color: getTextColor() }]}>
-        {calculations.displayDailyPrice}/Day
+        {formatCurrency(calculations.dailyCost, currencySymbol)}/Day
       </Text>
 
       {/* Status Indicator */}

@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   ActivityIndicator,
 } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { Asset } from '../types';
 import { assetStore } from '../store/assetStore';
@@ -24,6 +25,7 @@ interface AddAssetFormProps {
 }
 
 export const AddAssetForm: React.FC<AddAssetFormProps> = ({ onClose, onAssetAdded }) => {
+  const insets = useSafeAreaInsets();
   const [name, setName] = useState('');
   const [icon, setIcon] = useState('basic-star');
   const [category, setCategory] = useState('Uncategorized');
@@ -82,6 +84,7 @@ export const AddAssetForm: React.FC<AddAssetFormProps> = ({ onClose, onAssetAdde
         calculateByUsage,
         usageCount: calculateByUsage ? parseInt(usageCount, 10) : undefined,
         specifiedDailyPrice: hasSpecifiedDailyPrice ? parseFloat(specifiedDailyPrice) : null,
+        isFavorite: false,
         inService,
         image: null,
       };
@@ -101,7 +104,7 @@ export const AddAssetForm: React.FC<AddAssetFormProps> = ({ onClose, onAssetAdde
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
         {/* Header */}
-        <View style={styles.header}>
+        <View style={[styles.header, { marginTop: insets.top }]}>
           <TouchableOpacity onPress={onClose}>
             <Text style={styles.closeButton}>Cancel</Text>
           </TouchableOpacity>

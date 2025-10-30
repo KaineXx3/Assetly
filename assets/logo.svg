@@ -1,0 +1,19 @@
+<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+  <!-- Rounded square background -->
+  <rect x="0" y="0" width="120" height="120" rx="18" fill="#FFFFFF" stroke="#F0F0F0" stroke-width="1" style="filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1))"/>
+  
+  <!-- Large "A" letter -->
+  <text x="60" y="72" font-family="System, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="72" font-weight="bold" text-anchor="middle" fill="#000000">A</text>
+  
+  <!-- Upward arrow removed per request -->
+  
+  <!-- Growth chart bars at bottom right -->
+  <!-- Bar 1 (purple) - height 12 -->
+  <rect x="76" y="86" width="7" height="12" rx="1" fill="#7C3AED"/>
+  
+  <!-- Bar 2 (purple) - height 17 -->
+  <rect x="86" y="81" width="7" height="17" rx="1" fill="#7C3AED"/>
+  
+  <!-- Bar 3 (teal) - height 22 -->
+  <rect x="96" y="76" width="7" height="22" rx="1" fill="#06B6D4"/>
+</svg>
