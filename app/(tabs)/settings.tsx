@@ -19,8 +19,19 @@ export default function SettingsScreen() {
   const [currency, setCurrency] = useState<Currency>(settingsStore.currency);
   const [showThemeModal, setShowThemeModal] = useState(false);
   const [showCurrencyModal, setShowCurrencyModal] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    // Ensure settings are loaded, then subscribe to changes
+    const initializeSettings = async () => {
+      await settingsStore.loadSettings();
+      setTheme(settingsStore.theme);
+      setCurrency(settingsStore.currency);
+      setIsLoading(false);
+    };
+
+    initializeSettings();
+
     // Subscribe to settings changes
     const unsubscribe = settingsStore.subscribe(() => {
       setTheme(settingsStore.theme);
@@ -33,15 +44,15 @@ export default function SettingsScreen() {
   }, []);
 
   const handleThemeChange = async (selectedTheme: Theme) => {
-    await settingsStore.setTheme(selectedTheme);
     setTheme(selectedTheme);
     setShowThemeModal(false);
+    await settingsStore.setTheme(selectedTheme);
   };
 
   const handleCurrencyChange = async (selectedCurrency: Currency) => {
-    await settingsStore.setCurrency(selectedCurrency);
     setCurrency(selectedCurrency);
     setShowCurrencyModal(false);
+    await settingsStore.setCurrency(selectedCurrency);
   };
 
   const getThemeLabel = (t: Theme) => {
