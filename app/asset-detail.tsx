@@ -640,6 +640,11 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     flex: 1,
     marginHorizontal: 4,
+    shadowColor: '#000000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 3,
+    elevation: 2,
   },
   favoriteButton: {
     backgroundColor: '#FEF3C7',

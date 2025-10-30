@@ -386,10 +386,17 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5F5F5',
     borderWidth: 1,
     borderColor: '#E0E0E0',
+    shadowColor: '#000000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.08,
+    shadowRadius: 2,
+    elevation: 1,
   },
   categoryButtonActive: {
     backgroundColor: '#6366F1',
     borderColor: '#6366F1',
+    shadowColor: '#6366F1',
+    shadowOpacity: 0.3,
   },
   categoryButtonText: {
     fontSize: 12,
