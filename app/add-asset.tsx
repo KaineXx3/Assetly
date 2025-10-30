@@ -121,7 +121,7 @@ export default function AddAssetModal({
     setShowIconPicker(false);
   };
 
-  const getIconSelectButtonStyle = (dynamicStyles: ReturnType<typeof createDynamicStyles>) => {
+  const getIconSelectButtonStyle = (dynamicStyles: any) => {
     if (!selectedIcon) {
       return dynamicStyles.iconSelectButton;
     }

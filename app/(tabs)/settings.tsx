@@ -12,9 +12,11 @@ import {
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { settingsStore, Theme, Currency } from '../../store/settingsStore';
+import { useThemeColors } from '../../hooks/use-theme-colors';
 
 export default function SettingsScreen() {
   const insets = useSafeAreaInsets();
+  const colors = useThemeColors();
   const [theme, setTheme] = useState<Theme>(settingsStore.theme);
   const [currency, setCurrency] = useState<Currency>(settingsStore.currency);
   const [showThemeModal, setShowThemeModal] = useState(false);

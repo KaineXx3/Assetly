@@ -20,6 +20,7 @@ import { IconPicker } from '../components/icon-picker';
 import { Input } from '../components/ui/input';
 import { Toggle } from '../components/ui/toggle';
 import { getIconById } from '../constants/icons';
+import { useThemeColors } from '../hooks/use-theme-colors';
 
 interface AssetDetailProps {
   visible: boolean;

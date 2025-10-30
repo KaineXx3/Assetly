@@ -4,6 +4,7 @@ import { TouchableOpacity, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { HapticTab } from '@/components/haptic-tab';
 import AddAssetModal from '../add-asset';
+import { useThemeColors } from '@/hooks/use-theme-colors';
 
 // Global state for asset refresh
 let assetRefreshCallback: (() => void) | null = null;
@@ -13,6 +14,7 @@ export function setAssetRefreshCallback(callback: () => void) {
 }
 
 export default function TabLayout() {
+  const colors = useThemeColors();
   const [showAddModal, setShowAddModal] = useState(false);
 
   const handleAddAssetSuccess = useCallback(() => {
@@ -27,7 +29,7 @@ export default function TabLayout() {
     <>
       <Tabs
         screenOptions={{
-          tabBarActiveTintColor: '#6366F1',
+          tabBarActiveTintColor: colors.primary,
           tabBarInactiveTintColor: '#999999',
           headerShown: false,
           tabBarButton: HapticTab,
@@ -35,9 +37,9 @@ export default function TabLayout() {
             height: 64,
             paddingBottom: 8,
             paddingTop: 8,
-            backgroundColor: '#FFFFFF',
+            backgroundColor: colors.cardBackground,
             borderTopWidth: 1,
-            borderTopColor: '#F0F0F0',
+            borderTopColor: colors.cardBorder,
           },
           tabBarLabelStyle: {
             fontSize: 11,
@@ -74,10 +76,10 @@ export default function TabLayout() {
                     width: 60,
                     height: 60,
                     borderRadius: 30,
-                    backgroundColor: '#6366F1',
+                    backgroundColor: colors.primary,
                     justifyContent: 'center',
                     alignItems: 'center',
-                    shadowColor: '#6366F1',
+                    shadowColor: colors.primary,
                     shadowOffset: { width: 0, height: 4 },
                     shadowOpacity: 0.35,
                     shadowRadius: 6,

@@ -22,6 +22,7 @@ import { StatCard } from '../../components/stat-card';
 import { initializeSampleData } from '../../utils/sample-data';
 import AssetDetailModal from '../asset-detail';
 import { setAssetRefreshCallback } from './_layout';
+import { useThemeColors } from '../../hooks/use-theme-colors';
 
 export default function AssetsScreen() {
   const insets = useSafeAreaInsets();
